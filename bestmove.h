@@ -54,116 +54,127 @@ vector<int>minimax(int color, int depth, int alpha, int beta)
 	
 	
 	vector<vector<int>>v1;
-	for(auto i:rw)
+	if(color==0)
 	{
-		int cx=i.x, cy=i.y;
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, cx, j});
-		for(int j=0;j<8;++j) v1.push_back({cx,cy,j,cy});
-	}
-	for(auto i:rb)
-	{
-		int cx=i.x, cy=i.y;
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, cx, j});
-		for(int j=0;j<8;++j) v1.push_back({cx,cy,j,cy});
-	}
-	
-	for(auto i:bw)
-	{
-		int cx=i.x, cy=i.y;
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cy-cx+j});
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cx+cy-j});
-	}
-	for(auto i:bb)
-	{
-		int cx=i.x, cy=i.y;
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cy-cx+j});
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cx+cy-j});
-	}
-	for(auto i:qw)
-	{
-		int cx=i.x, cy=i.y;
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, cx, j});
-		for(int j=0;j<8;++j) v1.push_back({cx,cy,j,cy});
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cy-cx+j});
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cx+cy-j});
-	}
-	for(auto i:qb)
-	{
-		int cx=i.x, cy=i.y;
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, cx, j});
-		for(int j=0;j<8;++j) v1.push_back({cx,cy,j,cy});
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cy-cx+j});
-		for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cx+cy-j});
-	}
-	for(auto i:pw)
-	{
-		int cx=i.x, cy=i.y;
-		v1.push_back({cx, cy, cx, cy+1});
-		v1.push_back({cx, cy, cx, cy+2});
-		v1.push_back({cx, cy, cx, cy-1});
-		v1.push_back({cx, cy, cx, cy-2});
-		v1.push_back({cx, cy, cx-1, cy+1});
-		v1.push_back({cx, cy, cx-1, cy-1});
-		v1.push_back({cx, cy, cx+1, cy-1});
-		v1.push_back({cx, cy, cx+1, cy+1});
-	}
-	for(auto i:pb)
-	{
-		int cx=i.x, cy=i.y;
-		v1.push_back({cx, cy, cx, cy+1});
-		v1.push_back({cx, cy, cx, cy+2});
-		v1.push_back({cx, cy, cx, cy-1});
-		v1.push_back({cx, cy, cx, cy-2});
-		v1.push_back({cx, cy, cx-1, cy+1});
-		v1.push_back({cx, cy, cx-1, cy-1});
-		v1.push_back({cx, cy, cx+1, cy-1});
-		v1.push_back({cx, cy, cx+1, cy+1});
-	}
-	for(auto i:knw)
-	{
-		int cx=i.x, cy=i.y;
-		v1.push_back({cx, cy, cx-1, cy-2});
-		v1.push_back({cx, cy, cx-1, cy+2});
-		v1.push_back({cx, cy, cx+1, cy-2});
-		v1.push_back({cx, cy, cx+1, cy+2});
-		v1.push_back({cx, cy, cx-2, cy-1});
-		v1.push_back({cx, cy, cx-2, cy+1});
-		v1.push_back({cx, cy, cx+2, cy-1});
-		v1.push_back({cx, cy, cx+2, cy+1});
-	}
-	for(auto i:knb)
-	{
-		int cx=i.x, cy=i.y;
-		v1.push_back({cx, cy, cx-1, cy-2});
-		v1.push_back({cx, cy, cx-1, cy+2});
-		v1.push_back({cx, cy, cx+1, cy-2});
-		v1.push_back({cx, cy, cx+1, cy+2});
-		v1.push_back({cx, cy, cx-2, cy-1});
-		v1.push_back({cx, cy, cx-2, cy+1});
-		v1.push_back({cx, cy, cx+2, cy-1});
-		v1.push_back({cx, cy, cx+2, cy+1});
-	}
-	for(auto i:kw)
-	{
-		int cx=i.x, cy=i.y;
-		for(int p=-1;p<=1;++p)
+		for(auto i:rw)
 		{
-			for(int q=-1;q<=1;++q)
-				v1.push_back({cx, cy, cx+p, cy+q});
+			int cx=i.x, cy=i.y;
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, cx, j});
+			for(int j=0;j<8;++j) v1.push_back({cx,cy,j,cy});
 		}
-		v1.push_back({cx,cy,cx+2,cy});
-		v1.push_back({cx,cy,cx-2,cy});
-	}
-	for(auto i:kb)
-	{
-		int cx=i.x, cy=i.y;
-		for(int p=-1;p<=1;++p)
+		for(auto i:bw)
 		{
-			for(int q=-1;q<=1;++q)
-				v1.push_back({cx, cy, cx+p, cy+q});
+			int cx=i.x, cy=i.y;
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cy-cx+j});
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cx+cy-j});
 		}
-		v1.push_back({cx,cy,cx+2,cy});
-		v1.push_back({cx,cy,cx-2,cy});
+		for(auto i:qw)
+		{
+			int cx=i.x, cy=i.y;
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, cx, j});
+			for(int j=0;j<8;++j) v1.push_back({cx,cy,j,cy});
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cy-cx+j});
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cx+cy-j});
+		}
+		for(auto i:pw)
+		{
+			int cx=i.x, cy=i.y;
+			v1.push_back({cx, cy, cx, cy+1});
+			v1.push_back({cx, cy, cx, cy+2});
+			v1.push_back({cx, cy, cx, cy-1});
+			v1.push_back({cx, cy, cx, cy-2});
+			v1.push_back({cx, cy, cx-1, cy+1});
+			v1.push_back({cx, cy, cx-1, cy-1});
+			v1.push_back({cx, cy, cx+1, cy-1});
+			v1.push_back({cx, cy, cx+1, cy+1});
+		}
+		for(auto i:knw)
+		{
+			int cx=i.x, cy=i.y;
+			v1.push_back({cx, cy, cx-1, cy-2});
+			v1.push_back({cx, cy, cx-1, cy+2});
+			v1.push_back({cx, cy, cx+1, cy-2});
+			v1.push_back({cx, cy, cx+1, cy+2});
+			v1.push_back({cx, cy, cx-2, cy-1});
+			v1.push_back({cx, cy, cx-2, cy+1});
+			v1.push_back({cx, cy, cx+2, cy-1});
+			v1.push_back({cx, cy, cx+2, cy+1});
+		}
+		for(auto i:kw)
+		{
+			int cx=i.x, cy=i.y;
+			for(int p=-1;p<=1;++p)
+			{
+				for(int q=-1;q<=1;++q)
+					v1.push_back({cx, cy, cx+p, cy+q});
+			}
+			v1.push_back({cx,cy,cx+2,cy});
+			v1.push_back({cx,cy,cx-2,cy});
+		}
+	}
+	else
+	{
+		for(auto i:rb)
+		{
+			int cx=i.x, cy=i.y;
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, cx, j});
+			for(int j=0;j<8;++j) v1.push_back({cx,cy,j,cy});
+		}
+		
+
+		for(auto i:bb)
+		{
+			int cx=i.x, cy=i.y;
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cy-cx+j});
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cx+cy-j});
+		}
+
+		for(auto i:qb)
+		{
+			int cx=i.x, cy=i.y;
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, cx, j});
+			for(int j=0;j<8;++j) v1.push_back({cx,cy,j,cy});
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cy-cx+j});
+			for(int j=0;j<8;++j) v1.push_back({cx, cy, j, cx+cy-j});
+		}
+
+		for(auto i:pb)
+		{
+			int cx=i.x, cy=i.y;
+			v1.push_back({cx, cy, cx, cy+1});
+			v1.push_back({cx, cy, cx, cy+2});
+			v1.push_back({cx, cy, cx, cy-1});
+			v1.push_back({cx, cy, cx, cy-2});
+			v1.push_back({cx, cy, cx-1, cy+1});
+			v1.push_back({cx, cy, cx-1, cy-1});
+			v1.push_back({cx, cy, cx+1, cy-1});
+			v1.push_back({cx, cy, cx+1, cy+1});
+		}
+
+		for(auto i:knb)
+		{
+			int cx=i.x, cy=i.y;
+			v1.push_back({cx, cy, cx-1, cy-2});
+			v1.push_back({cx, cy, cx-1, cy+2});
+			v1.push_back({cx, cy, cx+1, cy-2});
+			v1.push_back({cx, cy, cx+1, cy+2});
+			v1.push_back({cx, cy, cx-2, cy-1});
+			v1.push_back({cx, cy, cx-2, cy+1});
+			v1.push_back({cx, cy, cx+2, cy-1});
+			v1.push_back({cx, cy, cx+2, cy+1});
+		}
+
+		for(auto i:kb)
+		{
+			int cx=i.x, cy=i.y;
+			for(int p=-1;p<=1;++p)
+			{
+				for(int q=-1;q<=1;++q)
+					v1.push_back({cx, cy, cx+p, cy+q});
+			}
+			v1.push_back({cx,cy,cx+2,cy});
+			v1.push_back({cx,cy,cx-2,cy});
+		}
 	}
 	
 	random_shuffle(v1.begin(), v1.end());

@@ -19,7 +19,7 @@ void Promote()
 		{
 			queen q;
 			q.y=0;
-			q.x=pw[i].x;
+			q.x=pb[i].x;
 			q.color=1;
 			qb.push_back(q);
 			board[pb[i].x][0]=15;
