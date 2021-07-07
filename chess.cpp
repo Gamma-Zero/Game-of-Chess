@@ -365,14 +365,12 @@ int main(int argc, char *argv[])
 				while(b==false)
 					b=Engine();
 				
-				SDL_Delay(1500);
 				
 				b=false;
 				Display(0,0);
 				while(b==false)
 					b=Engine();
 					
-				SDL_Delay(1500);
 				
 				
 				

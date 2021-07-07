@@ -195,7 +195,7 @@ vector<int>minimax(int color, int depth, int alpha, int beta)
 			lasty=j%8;
 			Destroy_Captures();
 			
-			if(depth<2) 
+			if(depth<3) 
 			{
 				vector<int>v=minimax(1-color, depth+1, alpha, beta);
 				if((color==0 && score<v[0]))
@@ -234,6 +234,6 @@ vector<int>minimax(int color, int depth, int alpha, int beta)
 		else return {0, -1, -1};
 	}
 	
-	if(depth==2) return {V,-1,-1};
+	if(depth==3) return {V,-1,-1};
 	return {score, nextmove.first, nextmove.second};
 }
