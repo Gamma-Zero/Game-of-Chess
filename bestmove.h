@@ -1,4 +1,4 @@
-#include "move.h"
+#include "promote.h"
 using namespace std;
 
 vector<king>gkw, gkb;
@@ -33,6 +33,7 @@ vector<int>minimax(int color, int depth, int alpha, int beta)
 	
 	int V=0;
 	for(int i=0;i<8;++i) for(int j=0;j<8;++j) V+=value[board[i][j]];
+	
 	
 	int board1[8][8];
 	for(int i=0;i<8;++i) for(int j=0;j<8;++j) board1[i][j]=board[i][j];    // storing board to restore it later
@@ -150,6 +151,8 @@ vector<int>minimax(int color, int depth, int alpha, int beta)
 			for(int q=-1;q<=1;++q)
 				v1.push_back({cx, cy, cx+p, cy+q});
 		}
+		v1.push_back({cx,cy,cx+2,cy});
+		v1.push_back({cx,cy,cx-2,cy});
 	}
 	for(auto i:kb)
 	{
@@ -159,6 +162,8 @@ vector<int>minimax(int color, int depth, int alpha, int beta)
 			for(int q=-1;q<=1;++q)
 				v1.push_back({cx, cy, cx+p, cy+q});
 		}
+		v1.push_back({cx,cy,cx+2,cy});
+		v1.push_back({cx,cy,cx-2,cy});
 	}
 	
 	random_shuffle(v1.begin(), v1.end());

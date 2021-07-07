@@ -110,9 +110,9 @@ bool move(int x1, int y1, int x2, int y2, int revert)
 				{
 					if(rw[i].x==x1 && rw[i].y==y1)
 					{
+						bool z=rw[i].castle;
 						b=rw[i].validmove(x1,y1,x2,y2);
 						if(!b) continue;
-						bool z=rw[i].castle;
 						rw[i].x=x2;
 						rw[i].y=y2;
 						rw[i].castle=false;
@@ -284,9 +284,9 @@ bool move(int x1, int y1, int x2, int y2, int revert)
 				{
 					if(rb[i].x==x1 && rb[i].y==y1)
 					{
+						bool z=rb[i].castle;
 						b=rb[i].validmove(x1,y1,x2,y2);
 						if(!b) continue;
-						bool z=rb[i].castle;
 						rb[i].x=x2;
 						rb[i].y=y2;
 						rb[i].castle=false;

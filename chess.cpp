@@ -66,6 +66,7 @@ bool Simulate(int x1, int y1, int x2, int y2)
 		lastcol=1-lastcol;
 		lastx=x2;
 		lasty=y2;
+		Promote();
 		Destroy_Captures();
 		
 		bool moveleft=findmove(1-lastcol);

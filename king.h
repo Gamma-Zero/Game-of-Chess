@@ -26,8 +26,10 @@ struct king
 			if(!castle) return false;
 			if(nextx==curx+2)
 			{
+				if(ischeck(x,y,color)) return false;
 				if((r1.x==nextx+1 && r1.y==nexty) || (r1.x==nextx+2 && r1.y==nexty))
 				{
+					if(!r1.castle) return false;
 					for(int q=x+1;q<r1.x;++q) if(board[q][y]!=0) return false;
 					board[curx][cury]=0;
 					board[r1.x][r1.y]=0;
@@ -39,6 +41,7 @@ struct king
 				}
 				if((r2.x==nextx+1 && r2.y==nexty) || (r2.x==nextx+2 && r2.y==nexty))
 				{
+					if(!r2.castle) return false;
 					for(int q=x+1;q<r2.x;++q) if(board[q][y]!=0) return false;
 					board[curx][cury]=0;
 					board[r2.x][r2.y]=0;
