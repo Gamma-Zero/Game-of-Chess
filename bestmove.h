@@ -128,7 +128,7 @@ vector<int>minimax(int color, int depth, int alpha, int beta)
 		v1.push_back({cx, cy, cx-2, cy-1});
 		v1.push_back({cx, cy, cx-2, cy+1});
 		v1.push_back({cx, cy, cx+2, cy-1});
-		v1.push_back({cx, cy, cx+2, cy-1});
+		v1.push_back({cx, cy, cx+2, cy+1});
 	}
 	for(auto i:knb)
 	{
@@ -140,7 +140,7 @@ vector<int>minimax(int color, int depth, int alpha, int beta)
 		v1.push_back({cx, cy, cx-2, cy-1});
 		v1.push_back({cx, cy, cx-2, cy+1});
 		v1.push_back({cx, cy, cx+2, cy-1});
-		v1.push_back({cx, cy, cx+2, cy-1});
+		v1.push_back({cx, cy, cx+2, cy+1});
 	}
 	for(auto i:kw)
 	{
